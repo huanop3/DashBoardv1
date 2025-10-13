@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+@* Dark admin layout skeleton. Sidebar + topbar + content area. *@
+<div class="admin-root">
+    <aside class="admin-sidebar">
+        <NavMenu />
+    </aside>
+    
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <span class="user-greeting">Welcome back!</span>
+            </div>
+        </header>
+        
+        <section class="admin-content">
+            @Body
+        </section>
+    </div>
+</div>
+

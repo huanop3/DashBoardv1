@@ -77,4 +77,5 @@ D:\DOTNET\App\obj\Debug\net9.0\BlazorApp.genruntimeconfig.cache
 D:\DOTNET\App\obj\Debug\net9.0\ref\BlazorApp.dll
 D:\DOTNET\App\bin\Debug\net9.0\package-lock.json
 D:\DOTNET\App\bin\Debug\net9.0\package.json
-D:\DOTNET\App\obj\Debug\net9.0\compressed\niqfivrdr6-6eca0ebh2l.gz
+D:\DOTNET\App\obj\Debug\net9.0\BlazorApp.sourcelink.json
+D:\DOTNET\App\obj\Debug\net9.0\compressed\niqfivrdr6-49ox5l7uhv.gz

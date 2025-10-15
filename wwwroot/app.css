@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Mona Sans';
-  src: url('/fonts/Mona-Sans-Regular.woff2') format('woff2');
+  src: url('/wwwroot/fonts/MonaSans-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -16,21 +16,29 @@
   --primary: #6C72FF;
   --primary-gradient: linear-gradient(135deg, #CB3CFF 20%, #7F25FB 68%);
   
-  /* Secondary Colors */
-  --secondary-1: #101935;
-  --secondary-2: #343B4F;
+  /* Secondary Colors - Exact from Figma */
+  --secondary-1: #12172B;
+  --secondary-2: #252C42;
   --secondary-3: #57C3FF;
-  --secondary-4: #9A91FB;
+  --secondary-4: #8A84F3;
   --secondary-5: #FDB52A;
   
-  /* Neutral Colors */
-  --neutral-800: #081028;
-  --neutral-700: #0A1330;
-  --neutral-600: #0B1739;
-  --neutral-500: #7E89AC;
-  --neutral-400: #AEB9E1;
-  --neutral-300: #D1DBF9;
-  --neutral-200: #D9E1FA;
+  /* System Colors */
+  --green-300: #10B981;
+  --green-50: rgba(16, 185, 129, 0.1);
+  --red-300: #EF4444;
+  --red-50: rgba(239, 68, 68, 0.1);
+  --yellow-300: #FBB024;
+  --yellow-50: rgba(251, 176, 36, 0.1);
+  
+  /* Neutral Colors - Exact from Figma */
+  --neutral-800: #0A0E1A;
+  --neutral-700: #13182B;
+  --neutral-600: #1F2537;
+  --neutral-500: #6B7494;
+  --neutral-400: #9CA3C3;
+  --neutral-300: #C4CAE0;
+  --neutral-200: #E1E5F1;
   --neutral-100: #FFFFFF;
   
   /* Semantic aliases */
@@ -49,6 +57,9 @@ html, body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Mona Sans', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Layout */
@@ -62,7 +73,10 @@ html, body {
   background: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
   overflow-y: auto;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   z-index: 100;
 }
 .admin-main {
@@ -71,6 +85,10 @@ html, body {
   flex-direction: column;
   position: relative;
   z-index: 1;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  margin-left: 260px;
 }
 .admin-topbar {
   height: 56px;
@@ -108,7 +126,9 @@ html, body {
 }
 .admin-content {
   flex: 1;
-  padding: 1.25rem;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Nav */
@@ -745,4 +765,1033 @@ html, body {
 /* Smooth content shift */
 .admin-main {
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   DASHBOARD STYLES
+   ============================================ */
+
+/* Dashboard Container - Full width premium design */
+.dashboard-container {
+  padding: 32px 40px;
+  width: 100%;
+  max-width: 100%;
+  background: linear-gradient(180deg, rgba(108, 114, 255, 0.02) 0%, transparent 100%);
+  box-sizing: border-box;
+}
+
+/* Stats Grid - Premium Figma layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stats-grid > .stats-card-large:nth-child(1),
+.stats-grid > .stats-card-large:nth-child(2) {
+  grid-column: span 2;
+  position: relative;
+}
+
+/* Stats Card - Exact Figma design */
+.stats-card {
+  background: var(--secondary-1);
+  border: 0.6px solid var(--secondary-2);
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  box-shadow: 0px 4px 16px 0px rgba(1, 5, 17, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  opacity: 0.6;
+}
+
+.stats-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0px 8px 24px 0px rgba(108, 114, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.stats-card-large {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-card-small {
+  grid-column: span 1;
+  min-height: 140px;
+  padding: 20px;
+}
+
+/* Stats Card Header - Figma spacing */
+.stats-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 0.6px solid rgba(255, 255, 255, 0.08);
+}
+
+.stats-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stats-header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.stats-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(108, 114, 255, 0.15) 0%, rgba(108, 114, 255, 0.08) 100%);
+  border-radius: 11px;
+  color: #6C72FF;
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0px 2px 8px rgba(108, 114, 255, 0.2);
+}
+
+.stats-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(108, 114, 255, 0.3), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.stats-icon svg {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0px 1px 2px rgba(108, 114, 255, 0.3));
+}
+
+.stats-icon-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.stats-icon-sm svg {
+  width: 18px;
+  height: 18px;
+}
+
+.stats-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #7E89AC;
+  letter-spacing: -0.01em;
+}
+
+.stats-title-sm {
+  font-size: 13px;
+  flex: 1;
+}
+
+.stats-link {
+  color: #6C72FF;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.stats-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.stats-period {
+  color: #7E89AC;
+  font-weight: 500;
+}
+
+.stats-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Stats Value - Figma typography */
+.stats-value-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stats-value {
+  font-size: 52px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stats-small-value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.stats-small-value h3 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* Stats Badge - Figma colors */
+.stats-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 0.6px solid;
+}
+
+.stats-badge-sm {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.stats-badge-positive {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10B981;
+}
+
+.stats-badge-positive svg {
+  color: #10B981;
+}
+
+.stats-badge-negative {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+}
+
+.stats-badge-negative svg {
+  color: #EF4444;
+}
+
+.stats-badge-warning {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #FBB024;
+}
+
+/* Small Stats Card - Figma layout */
+.stats-small-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 0.6px solid rgba(255, 255, 255, 0.08);
+}
+
+.stats-menu-btn {
+  margin-left: auto;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  color: #7E89AC;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+/* Stats Chart - Figma accurate */
+.stats-chart {
+  position: relative;
+  margin-top: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 420 / 140;
+  margin-bottom: 8px;
+  overflow: visible;
+}
+
+/* Chart Animations */
+.chart-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 2s ease-out forwards;
+  filter: drop-shadow(0 2px 8px rgba(108, 114, 255, 0.3));
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chart-area {
+  opacity: 0;
+  animation: fadeInArea 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes fadeInArea {
+  to {
+    opacity: 0.6;
+  }
+}
+
+.chart-point {
+  opacity: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInPoint 0.5s ease-out forwards;
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 2;
+}
+
+.chart-point:hover {
+  filter: drop-shadow(0 0 16px rgba(108, 114, 255, 1)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  transform: scale(1.4);
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 3;
+}
+
+.chart-point-1 { animation-delay: 0.5s; }
+.chart-point-2 { animation-delay: 0.6s; }
+.chart-point-3 { animation-delay: 0.7s; }
+.chart-point-4 { animation-delay: 0.8s; }
+.chart-point-5 { animation-delay: 0.9s; }
+.chart-point-6 { animation-delay: 1s; }
+.chart-point-7 { animation-delay: 1.1s; }
+.chart-point-8 { animation-delay: 1.2s; }
+.chart-point-9 { animation-delay: 1.3s; }
+
+@keyframes fadeInPoint {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.chart-bar {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 6px rgba(108, 114, 255, 0.2));
+}
+
+.chart-bar:hover {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 12px rgba(108, 114, 255, 0.7));
+  transform: translateY(-2px);
+}
+
+/* Chart Tooltip */
+/* Chart Tooltip - Premium Design */
+.chart-tooltip {
+  position: absolute;
+  display: none;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(108, 114, 255, 0.95) 0%, rgba(90, 96, 230, 0.95) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 8px 32px rgba(108, 114, 255, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  animation: tooltipFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.chart-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  border-radius: 7px;
+  pointer-events: none;
+}
+
+.chart-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgba(108, 114, 255, 0.95);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Y-Axis Labels */
+.chart-y-axis {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  bottom: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #7E89AC;
+  font-weight: 600;
+  text-align: right;
+  width: 35px;
+}
+
+.chart-y-axis span {
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.chart-y-axis span:first-child {
+  transform: translateY(0);
+}
+
+.chart-y-axis span:last-child {
+  transform: translateY(-100%);
+}
+
+/* X-Axis Labels */
+.chart-x-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding: 0 20px;
+  font-size: 11px;
+  color: #7E89AC;
+  font-weight: 600;
+}
+
+.chart-x-axis span {
+  flex: 1;
+  text-align: center;
+}
+
+.chart-x-axis span:first-child {
+  text-align: left;
+}
+
+.chart-x-axis span:last-child {
+  text-align: right;
+}
+
+/* Legacy support */
+.chart-labels {
+  position: absolute;
+  left: -35px;
+  top: 0;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #7E89AC;
+  font-weight: 500;
+}
+
+.chart-x-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 10px;
+  color: #7E89AC;
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+/* Stats Footer */
+.stats-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 0.6px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-live {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 0.6px solid rgba(16, 185, 129, 0.3);
+  border-radius: 6px;
+  color: #10B981;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+.live-count {
+  color: #7E89AC;
+  font-weight: 500;
+}
+
+/* ============================================
+   TASKS SECTION - Figma accurate
+   ============================================ */
+
+.tasks-section {
+  background: var(--secondary-1);
+  border: 0.6px solid var(--secondary-2);
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0px 4px 16px 0px rgba(1, 5, 17, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.tasks-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+  padding-bottom: 24px;
+  border-bottom: 0.6px solid rgba(255, 255, 255, 0.06);
+}
+
+.tasks-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tasks-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: -0.015em;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.tasks-count {
+  font-size: 13px;
+  color: var(--neutral-500);
+  padding: 6px 14px;
+  background: rgba(126, 137, 172, 0.12);
+  border-radius: 6px;
+  font-weight: 600;
+  box-shadow: 0 0 0 0.6px rgba(126, 137, 172, 0.15) inset;
+}
+
+.tasks-header-right {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0.6px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.btn-icon-sm {
+  padding: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.btn-icon-sm:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  background: transparent;
+  border: 0.6px solid #2D3142;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(108, 114, 255, 0.12);
+  border-color: #6C72FF;
+  color: #6C72FF;
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 12px rgba(108, 114, 255, 0.2);
+}
+
+/* ============================================
+   TASKS TABLE - REDESIGNED FROM SCRATCH
+   ============================================ */
+
+/* Table Container */
+.tasks-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table Base */
+.tasks-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Table Header */
+.tasks-table thead {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tasks-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Table Body Cells */
+.tasks-table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Column 1: Checkbox - Fixed 70px */
+.tasks-table th:nth-child(1),
+.tasks-table td:nth-child(1) {
+  width: 70px;
+  text-align: left;
+}
+
+/* Column 2: Task Name - 35% */
+.tasks-table th:nth-child(2),
+.tasks-table td:nth-child(2) {
+  width: 35%;
+}
+
+/* Column 3: Status - 15% */
+.tasks-table th:nth-child(3),
+.tasks-table td:nth-child(3) {
+  width: 15%;
+}
+
+/* Column 4: Due Date - 15% */
+.tasks-table th:nth-child(4),
+.tasks-table td:nth-child(4) {
+  width: 15%;
+}
+
+/* Column 5: Assignee - 15% */
+.tasks-table th:nth-child(5),
+.tasks-table td:nth-child(5) {
+  width: 15%;
+  text-align: center;
+}
+
+/* Column 6: Actions - Fixed 70px */
+.tasks-table th:nth-child(6),
+.tasks-table td:nth-child(6) {
+  width: 70px;
+  text-align: center;
+}
+
+/* Row Hover Effects */
+.tasks-table tbody tr {
+  transition: background 0.2s;
+}
+
+.tasks-table tbody tr:hover {
+  background: rgba(108, 114, 255, 0.04);
+}
+
+.tasks-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Custom Checkbox Styling - Premium Design */
+.custom-checkbox {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--neutral-600);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  margin: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-checkbox:hover {
+  border-color: var(--primary);
+  background: rgba(108, 114, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(108, 114, 255, 0.08);
+}
+
+.custom-checkbox:checked {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(108, 114, 255, 0.12);
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+  display: block;
+}
+
+.custom-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(108, 114, 255, 0.15);
+}
+
+.custom-checkbox:active {
+  transform: scale(0.95);
+}
+
+/* Header checkbox (select all) - Enhanced */
+.tasks-table thead .custom-checkbox {
+  border-color: var(--neutral-500);
+  border-width: 2px;
+}
+
+.tasks-table thead .custom-checkbox:hover {
+  border-color: var(--primary);
+}
+
+.tasks-table thead .custom-checkbox:checked {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Task Name Column Styling */
+.tasks-table td:nth-child(2) {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Due Date Column Styling */
+.tasks-table td:nth-child(4) {
+  color: var(--neutral-400);
+}
+
+/* Status Badge - Premium Figma design */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  text-transform: capitalize;
+  transition: all 0.2s;
+}
+
+.status-done {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  box-shadow: 0 0 0 0.6px rgba(16, 185, 129, 0.2) inset;
+}
+
+.status-done:hover {
+  background: rgba(16, 185, 129, 0.2);
+}
+
+.status-progress {
+  background: rgba(251, 176, 36, 0.15);
+  color: #FBB024;
+  box-shadow: 0 0 0 0.6px rgba(251, 176, 36, 0.2) inset;
+}
+
+.status-progress:hover {
+  background: rgba(251, 176, 36, 0.2);
+}
+
+.status-pending {
+  background: rgba(126, 137, 172, 0.15);
+  color: var(--neutral-400);
+  box-shadow: 0 0 0 0.6px rgba(126, 137, 172, 0.2) inset;
+}
+
+.status-pending:hover {
+  background: rgba(126, 137, 172, 0.2);
+}
+
+/* Assignee Avatar - Premium Figma gradient */
+.assignee-avatar {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #CB3CFF 0%, #7F25FB 100%);
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.02em;
+  box-shadow: 0px 3px 12px rgba(127, 37, 251, 0.4), 0px 1px 3px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s;
+}
+
+.assignee-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 16px rgba(127, 37, 251, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Dashboard - Figma breakpoints */
+@media (max-width: 1400px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stats-grid > .stats-card-large:nth-child(1),
+  .stats-grid > .stats-card-large:nth-child(2) {
+    grid-column: span 2;
+  }
+  
+  .stats-grid > .stats-card-small {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stats-grid > .stats-card-large,
+  .stats-grid > .stats-card-small {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Adjust task table columns for medium screens */
+  .tasks-table th:nth-child(2),
+  .tasks-table td:nth-child(2) {
+    width: auto;
+  }
+  
+  .tasks-table th:nth-child(3),
+  .tasks-table td:nth-child(3) {
+    width: 140px;
+  }
+  
+  .tasks-table th:nth-child(4),
+  .tasks-table td:nth-child(4) {
+    width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+  
+  .stats-card {
+    padding: 20px;
+  }
+  
+  .stats-card-large {
+    min-height: 320px;
+  }
+  
+  .tasks-section {
+    padding: 20px 16px;
+  }
+  
+  .tasks-table {
+    margin: 0 -16px;
+    overflow-x: auto;
+  }
+  
+  .tasks-table table {
+    width: calc(100% + 32px);
+    table-layout: auto;
+  }
+  
+  .stats-value {
+    font-size: 36px;
+  }
+  
+  .stats-small-value h3 {
+    font-size: 24px;
+  }
+  
+  .tasks-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .tasks-header-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .tasks-table {
+    margin: 0 -20px;
+  }
+  
+  .tasks-table table {
+    width: calc(100% + 40px);
+  }
+  
+  .tasks-table th,
+  .tasks-table td {
+    padding: 14px 20px;
+    font-size: 13px;
+  }
 }
